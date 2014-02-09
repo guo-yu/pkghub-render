@@ -6,5 +6,5 @@ module.exports = function(template, data, engine, callback) {
     if (engine.name === 'jade') html = engine._engine.renderFile(template, data);
     if (engine.name === 'swig') html = engine._engine.compileFile(template)(data);
     if (!html) return callback(new Error(errors['406']));
-    return callback(null, html);
+    return callback(null, html, template, data, engine);
 };
