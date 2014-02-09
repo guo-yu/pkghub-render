@@ -21,6 +21,12 @@ render('mails-flat/message', function(err, html){
 });
 ````
 
+### Support Engines
+
+- jade (built in)
+- swig (built in)
+- ejs
+
 ### API
 check this file: `index.js`
 

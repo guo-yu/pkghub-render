@@ -1,6 +1,6 @@
 {
   "name": "pkghub-render",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "a render of pkghub",
   "main": "index.js",
   "scripts": {
@@ -20,6 +20,8 @@
     "url": "https://github.com/turingou/pkghub-render/issues"
   },
   "dependencies": {
-    "pkghub": "~0.0.2"
+    "pkghub": "~0.0.2",
+    "swig": "*",
+    "jade": "*"
   }
 }
