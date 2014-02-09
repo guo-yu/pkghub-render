@@ -1,15 +1,24 @@
 ## pkghub-render ![npm](https://badge.fury.io/js/pkghub-render.png)
 
-a render of pkghub
+a render of pkghub, render as given `module/template` style.
 
 ### Installation
 
-[![NPM](https://nodei.co/npm/pkghub-render.png)](https://nodei.co/npm/pkghub-render/) [![NPM](https://nodei.co/npm-dl/pkghub-render.png?months=6)](https://nodei.co/npm/pkghub-render/)
-
+```
+$ npm install pkghub-render
+```
 
 ### Example
+
+render requires `{{moduleName}}/{{template}}` string as dest file.
 ````javascript
-var pkghub-render = require('pkghub-render');
+var render = require('pkghub-render');
+
+// mails-flat is a module published to NPM
+// template dir could be `home` or `home.html`
+render('mails-flat/message', function(err, html){
+    console.log(html);
+});
 ````
 
 ### API
