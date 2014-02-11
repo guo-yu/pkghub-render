@@ -22,6 +22,7 @@ module.exports = function(template, data, callback, e) {
         var engine = {};
         var dest = file.exist ? file.dir : file.availables[0];
         engine.name = theme['view engine'];
+        data.Theme = theme;
         try {
             engine._engine = isEngine(e) ? e : require(theme['view engine']);
         } catch (err) {
