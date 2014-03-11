@@ -38,7 +38,7 @@ module.exports = function(template, data, callback, e) {
         try {
             return compile(dest, data, engine, callback);
         } catch (err) {
-            return callback(new Error(err.toString()));
+            return callback(err);
         }
     });
 };

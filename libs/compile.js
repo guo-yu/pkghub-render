@@ -16,5 +16,6 @@ module.exports = function(template, data, engine, callback) {
     if (name === 'swig') html = _engine.compileFile(template)(data);
     if (name === 'ejs') html = _engine.render(fs.readFileSync(template), data);
     if (!html) return callback(new Error(errors['406']));
+    if (typeof(html) === 'object') return callback(html);
     return callback(null, html, template, data, engine);
 };
