@@ -4,14 +4,14 @@ a render of pkghub, render as given `module/template` style.
 
 ### Installation
 
-```
+```bash
 $ npm install pkghub-render
 ```
 
 ### Example
 
 render requires `{{moduleName}}/{{template}}` string as dest file.
-````javascript
+```js
 var render = require('pkghub-render');
 
 // mails-flat is a module published to NPM
@@ -19,9 +19,9 @@ var render = require('pkghub-render');
 render('mails-flat/message', function(err, html){
     console.log(html);
 });
-````
+```
 
-### Support Engines
+### Support View Engines
 
 - jade (built in)
 - swig (built in)

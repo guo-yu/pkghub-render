@@ -20,8 +20,8 @@
     "url": "https://github.com/turingou/pkghub-render/issues"
   },
   "dependencies": {
-    "pkghub": "~0.0.2",
-    "swig": "*",
-    "jade": "*"
+    "jade": "^1.7.0",
+    "pkghub": "0.1.0",
+    "swig": "^1.4.2"
   }
 }
