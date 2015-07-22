@@ -1,6 +1,6 @@
-module.exports = {
-  '403': 'theme module not found',
-  '404': 'template file not found',
-  '405': 'template engine is required',
-  '406': 'template engine is not supported yet'
-};
+export default {
+  '403': 'Theme module not found',
+  '404': 'Template file not found',
+  '405': 'Template engine is required',
+  '406': 'Template engine is not supported yet'
+}
