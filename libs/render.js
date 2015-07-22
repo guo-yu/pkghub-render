@@ -2,8 +2,6 @@ import pkghub from 'pkghub'
 import Promise from 'bluebird'
 import compile from './compile'
 
-let hub = new pkghub
-
 /**
 *
 * A wrapper function for rendering html string by given template and data,
@@ -15,56 +13,33 @@ let hub = new pkghub
 *
 **/
 export default function renderer(template, data) {
-  return new Promise((resolve, reject) => {
-    if (!template) 
-      return reject(new Error('Template file not found'))
+  const hub = new pkghub
 
-    hub.load(template)
-      .then((theme, file) => {
-        if (!theme) 
-          return reject(new Error('Theme module not found'))
-        if (!theme['view engine']) 
-          return reject(new Error('Template engine is required'))
-        if (!file) 
-          return reject(new Error('Template file not found'))
+  return hub.load(template)
+    .then(({ module, file }) => {
+      if (!module) 
+        return Promise.reject(new Error('Target theme module was not found'))
+      if (!module['view engine']) 
+        return Promise.reject(new Error('Template engine in `package.json` was required'))
+      if (!file) 
+        return Promise.reject(new Error('Template file was not found'))
 
-        const engine = {
-          name: theme['view engine']
-        }
+      // Select the first file when template file does not exist.
+      const dest = file.exist ? file.dir : file.availables[0]
 
-        // Select the first file when template file does not exist.
-        var dest = file.exist ? file.dir : file.availables[0]
+      // Inject `THEME` locals
+      data.THEME = module
+      // Replace #{static} in template with real public path.
+      data.static = isURI(module.static) ? 
+        module.static : 
+        '/' + module.name;
 
-        // Inject `Theme` locals
-        data.Theme = theme
-
-        // Replace #{static} in template with real public path.
-        data.static = isURI(theme.static) ? 
-          theme.static : 
-          '/' + theme.name;
-
-        try {
-          engine._engine = require(engine.name)
-        } catch (err) {
-          return reject(new Error('Template engine is required'))
-        }
-
-        try {
-          var html = compile(dest, data, engine)
-        } catch (err) {
-          return reject(err)
-        }
-
-        // Errors come from view engine
-        if (typeof(html) === 'object')
-          return reject(html)
-
-        return resolve(html)
+      return compile(dest, data, {
+        engine: module['view engine']
       })
-      .catch(reject)
+    })
+}
 
-    function isURI(dir) {
-      return dir && (dir.indexOf('http') === 0 || dir.indexOf('https') === 0)
-    }
-  })
+function isURI(dir) {
+  return dir && (dir.indexOf('http') === 0 || dir.indexOf('https') === 0)
 }

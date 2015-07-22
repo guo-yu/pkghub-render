@@ -4,6 +4,7 @@
   "description": "a template renderer based on pkghub",
   "main": "dist/render.js",
   "scripts": {
+    "test": "node_modules/mocha/bin/mocha tests/*.js --require tests/babelhook",
     "build": "node_modules/.bin/babel libs --out-dir dist --source-maps --watch"
   },
   "repository": {
@@ -20,8 +21,13 @@
     "url": "https://github.com/turingou/pkghub-render/issues"
   },
   "dependencies": {
+    "pkghub": "0.1.1",
     "bluebird": "^2.9.34",
-    "pkghub": "0.1.0",
     "swig": "^1.4.2"
+  },
+  "devDependencies": {
+    "mails-flat": "0.0.1",
+    "mocha": "^2.2.5",
+    "should": "^7.0.2"
   }
 }

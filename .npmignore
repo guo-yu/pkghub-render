@@ -1,5 +1,5 @@
 .DS_*
 node_modules
-example
+examples
 tests
 *.log
