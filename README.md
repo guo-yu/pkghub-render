@@ -1,6 +1,6 @@
 ## pkghub-render ![npm](https://badge.fury.io/js/pkghub-render.png)
 
-a render of pkghub, render as given `module/template` style.
+A renderer for pkghub, render html as given `module/template` template.
 
 ### Installation
 
@@ -10,25 +10,26 @@ $ npm install pkghub-render
 
 ### Example
 
-render requires `{{moduleName}}/{{template}}` string as dest file.
+Render requires `{ moduleName }/{ template }` string as dest file.
+
 ```js
-var render = require('pkghub-render');
+import render from 'pkghub-render'
 
 // mails-flat is a module published to NPM
 // template dir could be `home` or `home.html`
-render('mails-flat/message', function(err, html){
-    console.log(html);
-});
+render('mails-flat/message')
+  .then(html => {
+    console.log(html)
+  })
+  .catch(err => 
+    console.log(err))
 ```
 
 ### Support View Engines
 
-- jade (built in)
-- swig (built in)
+- swig (built-in)
+- jade
 - ejs
-
-### API
-check this file: `index.js`
 
 ### Contributing
 - Fork this repo
