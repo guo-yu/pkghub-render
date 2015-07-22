@@ -1,6 +1,6 @@
-import pkghub = 'pkghub'
+import pkghub from 'pkghub'
 import Promise from 'bluebird'
-import compile = './compile'
+import compile from './compile'
 
 let hub = new pkghub
 
